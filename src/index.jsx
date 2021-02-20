@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
-import Card from './card.jsx'
+import App from './App.jsx'
+
 
 
 ReactDOM.render(
-  <Card name={"Bill the robot"} description={"The original"}/>,
-  document.getElementById('root')
+  <App />, document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
