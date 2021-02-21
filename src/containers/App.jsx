@@ -1,8 +1,9 @@
 import React from 'react';
 
-import CardList from './CardList.jsx';
+import CardList from '../components/CardList.jsx';
+import Scroll from "../components/Scroll.jsx";
 
-import SearchBox from './SearchBox.jsx';
+import SearchBox from '../components/SearchBox.jsx';
 
 import "./App.css"
 import "tachyons";
@@ -26,8 +27,9 @@ class App extends React.Component {
     }
 
     render() {
+        const { robots, searchField } = this.state;
 
-        if (this.state.robots.length === 0) {
+        if (robots.length === 0) {
             return <h1>Loading...</h1>
         }
 
@@ -37,15 +39,19 @@ class App extends React.Component {
             <div className="tc">
                 <h1 className="f1">RobotFriends</h1>
                 <SearchBox searchChange={this.OnSearchChange} />
-                <CardList robots={filteredBots} requestedRobots={this.state.searchField}/>
+
+                <Scroll>
+                    <CardList robots={filteredBots} requestedRobots={searchField}/>
+                </Scroll>
             </div>
         )
     }
 
     filterRobots() {
-        return this.state.robots.filter(
+        const { robots, searchField } = this.state;
+        return robots.filter(
             robot => {
-                return robot.name.toLowerCase().includes(this.state.searchField.trim().toLowerCase());
+                return robot.name.toLowerCase().includes(searchField.trim().toLowerCase());
             });
     }
 
