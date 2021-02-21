@@ -5,6 +5,8 @@ import Scroll from "../components/Scroll.jsx";
 
 import SearchBox from '../components/SearchBox.jsx';
 
+import ErrorBoundry from '../components/ErrorBoundry.jsx'
+
 import "./App.css"
 import "tachyons";
 
@@ -41,7 +43,9 @@ class App extends React.Component {
                 <SearchBox searchChange={this.OnSearchChange} />
 
                 <Scroll>
-                    <CardList robots={filteredBots} requestedRobots={searchField}/>
+                    <ErrorBoundry>
+                        <CardList robots={filteredBots} requestedRobots={searchField}/>
+                    </ErrorBoundry>
                 </Scroll>
             </div>
         )
